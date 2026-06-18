@@ -1,6 +1,5 @@
 import random
 
-# Em um cenário real, esses dados viriam de APIs (Google Maps, OpenWeather)
 locais = [
     {"nome": "Smart Gym Center", "tipo": "Academia", "lotacao": 25, "distancia": 8},
     {"nome": "Café Tech Hub", "tipo": "Coworking", "lotacao": 85, "distancia": 12},
@@ -8,12 +7,34 @@ locais = [
     {"nome": "Parque da Cidade", "tipo": "Lazer", "lotacao": 40, "distancia": 20}
 ]
 
+def atualizar_lotacao_segura(nome_local, novo_dado):
+    """
+    TRAVA DE CÓDIGO (MITIGAÇÃO DE SOFTWARE):
+    Verifica se o dado recebido do sensor (hardware) é válido antes de aceitar.
+    Evita o travamento do sistema por dados corrompidos.
+    """
+    try:
+        lotacao_real = int(novo_dado)
+        
+        #(If/Else defensivo)
+        if lotacao_real < 0:
+            print(f"⚠️ ERRO DE SOFTWARE: Sensor do {nome_local} enviou número negativo ({lotacao_real}). Dado rejeitado.")
+            return False
+        elif lotacao_real > 100:  # Limite de porcentagem de lotação
+            print(f"⚠️ ERRO DE SOFTWARE: Sensor do {nome_local} enviou lotação acima de 100% ({lotacao_real}%). Possível falha física.")
+            return False
+        else:
+            for local in locais:
+                if local["nome"] == nome_local:
+                    local["lotacao"] = lotacao_real
+            print(f"✅ DADO SEGURO: Lotação do '{nome_local}' atualizada para {lotacao_real}%.")
+            return True
+            
+    except ValueError:
+        print(f"❌ ATAQUE OU FALHA CRÍTICA: O sensor do {nome_local} enviou texto/formato inválido. Bloqueado por segurança.")
+        return False
+
 def analisar_momento_saida(nivel_transito, clima):
-    """
-    Decide se é um bom momento para sair de casa.
-    transito: 0 a 100 (baixo a alto)
-    clima: 'ensolarado', 'nublado', 'chuva'
-    """
     print(f"\n--- Análise de Contexto ---")
     print(f"Trânsito: {nivel_transito}% | Clima: {clima}")
     
@@ -22,24 +43,19 @@ def analisar_momento_saida(nivel_transito, clima):
     elif nivel_transito >= 50 and nivel_transito < 80:
         return "⚠️ ATENÇÃO: Trânsito moderado. Considere esperar 20 minutos."
     else:
-        return "❌ NÃO RECOMENDADO: Trânsito pesado ou clima adverso. Fique mais um pouco."
+        return "❌ NÃO RECOMENDADO: Trânsito pesado ou clima adverso."
 
 def recomendar_melhor_local(lista_locais):
-    """
-    Filtra os locais mais vazios e próximos.
-    """
     print("\n--- Sugestões Personalizadas para Agora ---")
     sugestoes = []
     
     for local in lista_locais:
-        # Lógica: Se a lotação for menor que 50%, é uma boa sugestão
         if local["lotacao"] < 50:
             sugestoes.append(local)
     
     if not sugestoes:
         return "Poxa, todos os seus lugares favoritos parecem cheios agora."
     
-    # Ordena por menor lotação (o mais vazio primeiro)
     sugestoes.sort(key=lambda x: x["lotacao"])
     
     for s in sugestoes:
@@ -49,25 +65,25 @@ def recomendar_melhor_local(lista_locais):
     return f"\nO local mais tranquilo é: {sugestoes[0]['nome']}"
 
 def simulador_app():
-    print("="*30)
-    print("   CITYSYNC - LOGIC ENGINE   ")
-    print("="*30)
+    print("="*45)
+    print("   CITYSYNC - LOGIC ENGINE (AV02 SEGURO)   ")
+    print("="*45)
     
-    # Simulando entrada de dados de sensores e APIs
+    print("\n[Simulando recebimento de dados dos Sensores de Borda]")
+
+    atualizar_lotacao_segura("Smart Gym Center", "30")
+    atualizar_lotacao_segura("Café Tech Hub", "-15")
+    atualizar_lotacao_segura("Biblioteca Central", "ERRO_TEXTO")
+    
     status_transito = random.randint(10, 90)
     climas_possiveis = ["ensolarado", "nublado", "chuva"]
     clima_atual = random.choice(climas_possiveis)
     
-    # 1. Analisar se vale a pena sair
     decisao = analisar_momento_saida(status_transito, clima_atual)
     print(decisao)
     
-    # 2. Se for uma boa hora (ou se o usuário insistir), recomendar locais
-    if status_transito < 80:
-        resultado = recomendar_melhor_local(locais)
-        print(resultado)
-    else:
-        print("\nAguardando melhoria no trânsito para sugerir rotas.")
+    resultado_local = recomendar_melhor_local(locais)
+    print(resultado_local)
 
-# Execução do simulador
-simulador_app()
+if __name__ == "__main__":
+    simulador_app()
