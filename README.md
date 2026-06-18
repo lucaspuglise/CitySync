@@ -14,7 +14,7 @@ Este é o meu projeto para a matéria de Introdução à Computação no CEUB. A
 ## 🛠️ Atualizações do aplicativo CitySync (2.0):
  - Melhoria no layout e navegação, trazendo mais modernidade e fluidez;
  - Mais botões interativos, melhorando a imersão;
- - Adição da função "tema", podendo alterar para o modo "escuro" ou "noite".
+ - Adição da função "tema", podendo alterar para o modo "escuro" ou "noite";
  - Adição de sensores: agora com a atuação de sensores nos locais em questão para ainda mais precisão.
 
 ---
