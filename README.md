@@ -10,11 +10,12 @@ Este é o meu projeto para a matéria de Introdução à Computação no CEUB. A
 - **Avisa a hora de sair:** Avalia o trânsito e o clima para dar um conselho se vale a pena sair de casa.
 - **Mostra lugares vazios:** Lista estabelecimentos parceiros (como academias e cafés) e aponta quais estão mais tranquilos no momento.
 - **Segurança Ativa:** Garante que os dados de lotação sejam reais e que o sistema não caia por falhas ou dados corrompidos.
-    - **Atualizações do aplicativo CitySync (2.0):**
-        - Melhoria no layout e navegação, trazendo mais modernidade e fluidez;
-        - Mais botões interativos, melhorando a imersão;
-        - Adição da função "tema", podendo alterar para o modo "escuro" ou "noite".
-        - Adição de sensores: agora com a atuação de sensores nos locais em questão para ainda mais precisão.
+    
+# 🛠️ Atualizações do aplicativo CitySync (2.0):
+ - Melhoria no layout e navegação, trazendo mais modernidade e fluidez;
+ - Mais botões interativos, melhorando a imersão;
+ - Adição da função "tema", podendo alterar para o modo "escuro" ou "noite".
+ - Adição de sensores: agora com a atuação de sensores nos locais em questão para ainda mais precisão.
 
 ---
 
