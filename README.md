@@ -11,7 +11,7 @@ Este é o meu projeto para a matéria de Introdução à Computação no CEUB. A
 - **Mostra lugares vazios:** Lista estabelecimentos parceiros (como academias e cafés) e aponta quais estão mais tranquilos no momento.
 - **Segurança Ativa:** Garante que os dados de lotação sejam reais e que o sistema não caia por falhas ou dados corrompidos.
     
-# 🛠️ Atualizações do aplicativo CitySync (2.0):
+## 🛠️ Atualizações do aplicativo CitySync (2.0):
  - Melhoria no layout e navegação, trazendo mais modernidade e fluidez;
  - Mais botões interativos, melhorando a imersão;
  - Adição da função "tema", podendo alterar para o modo "escuro" ou "noite".
